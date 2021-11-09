@@ -1,0 +1,37 @@
+@use '../../../assets/styles/mixins' as *;
+
+::ng-deep {
+  .ngx-slider {
+    .ngx-slider-pointer {
+      position: absolute !important;
+      top: 50% !important;
+      margin-top: -9px;
+      height: 18px !important;
+      width: 6px !important;
+      background: url("../../../assets/images/range-thumb-icon.svg") left center no-repeat !important;
+      background-size: cover !important;
+      cursor: grab !important;
+    }
+    .ngx-slider-pointer:after {
+      display: none !important;
+    }
+    .ngx-slider-pointer-max {
+      transform: rotate(180deg);
+    }
+    .ngx-slider-pointer.ngx-slider-active:focus-visible {
+      outline: none !important;
+    }
+  }
+  .ngx-slider.animate .ngx-slider-pointer {
+    transition: none !important;
+  }
+
+  .filters__group {
+    padding-bottom: 28px;
+
+    legend {
+      @include text-format(600);
+      margin-bottom: 28px;    
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@use '../../../assets/styles/vars' as *;
+@use '../../../assets/styles/mixins' as *;
+
+.filter-form {
+  display: none;
+
+  @media screen and (min-width: 720px) {
+    display: flex;
+    flex-direction: column;
+    max-width: 375px;
+
+    &__title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @include text-format(400, 1.5rem);
+    }
+
+    &__submit-button {
+      width: 40px;
+      height: 40px;
+      background: #fff;
+      border: none;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow;
+    }
+
+    &__list-wrapper {
+      flex-grow: 1;
+      max-width: 560px;
+      background: $white;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 20px 15px 15px;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow;
+
+      @media screen and (min-width: 1200px) {
+        padding: 30px 20px 45px; 
+        margin-top: 20px;
+      }
+    }
+    
+    &__clear-button {
+      width: 100%;
+      padding: 17px;
+      text-transform: uppercase;
+      border: none;
+      color: $white;
+      background: $bg-primary;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow;
+    }
+
+    hr {
+      margin-bottom: 28px;
+    }
+  }
+}

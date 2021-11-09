@@ -1,0 +1,8 @@
+<div class="filters__option filters__option_checkbox">
+  <div>
+    <input type="checkbox" [id]="this.filter.title" name="filter-item" [(ngModel)]="this.filter.checked"
+      (ngModelChange)="modelChange()" />
+    <label [htmlFor]="filter.title">{{filter.title}}</label>
+  </div>
+  <span class="filters__count"></span>
+</div>

@@ -1,0 +1,8 @@
+<fieldset class="filters__group">
+  <legend>{{title}}</legend>
+  <ul>
+    <li *ngFor="let filter of filters">
+      <app-filter-item [filter]="filter"></app-filter-item>
+    </li>
+  </ul>
+</fieldset>

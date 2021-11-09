@@ -1,0 +1,4 @@
+@mixin text-format($font-weight, $font-size: 18px){
+  font-weight: $font-weight;
+  font-size: $font-size;
+}

@@ -1,0 +1,12 @@
+<form class="search" submit={onSubmit}>
+  <div class="search__results">
+    <p>7,618 results found</p>
+    <button class="search__button-like" click="goToWishlist()">
+      <img [src]="true?'../assets/images/like.svg':'../assets/images/like_2.svg'" alt="see wishlist" />
+    </button>
+  </div>
+  <label htmlFor="search-input" hidden>Search</label>
+  <input input="props.debouncedOnInput()" name="search" class="search__input" id="search-input" type="text"
+    placeholder="Search" [(ngModel)]="value" (ngModelChange)="modelChange()" />
+  <img class="search__image" src="../assets/images/search.svg" alt="search icon" />
+</form>

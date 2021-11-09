@@ -1,0 +1,30 @@
+<div class="card">
+  <div (click)="goToProductPage()">
+    <div class="card__image">
+      <img [src]="this.product.images[0]" alt="product" />
+    </div>
+    <div class="card__body">
+      <div>
+        <span [class]="this.product.rating?'card__rating':'visually-hidden'">
+          {{this.product.rating}}
+          <img src="../assets/images/star.svg" alt="star icon" />
+        </span>
+        <span class="card__price">{{this.product.price}}</span>
+      </div>
+      <h4 class="card__title">{{this.product.title}}</h4>
+    </div>
+  </div>
+  <div class="card__footer">
+    <button class="card__button card__button_wishlist" (click)="addToWishlist()">
+      <img [src]="!this.product.inWishlist
+      ? '../assets/images/heart.svg'
+      :'../assets/images/heart_2.svg'" alt="in wishlist" />
+      Wishlist
+    </button>
+    <button class="card__button card__button_cart" (click)="addToCart()">
+      <img src="../assets/images/shopping-bag.svg" alt="add to cart" />
+      Add to cart
+      {{this.product.quantity?' ('+this.product.quantity+')':''}}
+    </button>
+  </div>
+</div>

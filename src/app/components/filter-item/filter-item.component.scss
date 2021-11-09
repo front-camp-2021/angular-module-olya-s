@@ -1,0 +1,43 @@
+@use '../../../assets/styles/vars' as*;
+
+.filters__option {
+  input {
+    opacity: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:checked + label::before {
+      background: #6f64f8;
+    }
+  }
+  
+  label {
+    display: inline;
+
+    &:hover {
+      cursor: pointer;
+    }
+    
+    &::before{
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-left: -15px;
+      margin-right: 10px;
+      border: 1px solid #979797;
+    }
+  }
+  
+  &_checkbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    label::before {
+      border-radius: 3px;
+    }
+  }
+}

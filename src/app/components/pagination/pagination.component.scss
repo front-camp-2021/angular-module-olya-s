@@ -1,0 +1,54 @@
+@use '../../../assets/styles/vars' as *;
+@use '../../../assets/styles/mixins' as *;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+
+
+  &__link {
+    border: none;
+    color: $text-color;
+    @include text-format(300, 1.2rem);
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &_arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+      background: #ededed;
+      border-radius: 50%;
+    }
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 10px;
+    background: #ededed;
+    border-radius: 7px;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    background: #ededed;
+    border-radius: 50%;
+
+    &_current {
+      border-radius: 50%;
+      color: #fff;
+      background: #6f64f8;
+    }
+  }
+}
