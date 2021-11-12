@@ -2,7 +2,7 @@
   <legend>{{title}}</legend>
   <ul>
     <li *ngFor="let filter of filters">
-      <app-filter-item [filter]="filter"></app-filter-item>
+      <app-filter-item [filter]="filter" [title]="title"></app-filter-item>
     </li>
   </ul>
 </fieldset>

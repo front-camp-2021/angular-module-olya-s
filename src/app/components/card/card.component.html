@@ -9,7 +9,7 @@
           {{this.product.rating}}
           <img src="../assets/images/star.svg" alt="star icon" />
         </span>
-        <span class="card__price">{{this.product.price}}</span>
+        <span class="card__price">{{this.product.price | currency:'UAH':'code':'0.0'}}</span>
       </div>
       <h4 class="card__title">{{this.product.title}}</h4>
     </div>

@@ -16,7 +16,7 @@
       @include text-format(400, 1.5rem);
     }
 
-    &__submit-button {
+    &__button {
       width: 40px;
       height: 40px;
       background: #fff;
@@ -29,8 +29,8 @@
       flex-grow: 1;
       max-width: 560px;
       background: $white;
-      margin-top: 15px;
-      margin-bottom: 15px;
+      margin-top: 20px;
+      margin-bottom: 20px;
       padding: 20px 15px 15px;
       border-radius: $border-radius;
       box-shadow: $box-shadow;
@@ -50,6 +50,12 @@
       background: $bg-primary;
       border-radius: $border-radius;
       box-shadow: $box-shadow;
+      @include text-format(400, 1rem);
+
+      &:hover {
+        cursor:pointer;
+        box-shadow: $box-shadow-hover;
+      }
     }
 
     hr {

@@ -15,6 +15,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { FilterComponent } from './components/filter/filter.component';
 import { FilterItemComponent } from './components/filter-item/filter-item.component';
 import { DoubleSliderComponent } from './components/double-slider/double-slider.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DoubleSliderComponent } from './components/double-slider/double-slider.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgxSliderModule
+    NgxSliderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

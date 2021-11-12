@@ -1,25 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { PageService } from 'src/app/services/page.service';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit, OnDestroy {
   start = 1;
   viewPages = 9;
   currentPage = 1;
   totalPages = 10;
   pages = this.getPages();
+  private destroy = new Subject<void>();
 
-  constructor() { }
+  constructor(
+    private page: PageService
+  ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.page.getCurrentPage()
+      .pipe(takeUntil(this.destroy))
+      .subscribe(data => this.currentPage = data);
+    this.page.getTotalPages()
+      .pipe(takeUntil(this.destroy))
+      .subscribe(data => {
+        this.totalPages = data;
+        this.pages = this.getPages();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
+  }
 
   getPages(): any {
     let pages: { class: string, dataIndex: number, ngContent: string }[] = [];
+    if (this.totalPages <= 1) {
+      return [];
+    }
     if (this.totalPages <= this.viewPages) {
-      console.log(this.currentPage)
       for (let i = 1; i <= this.totalPages; i++) {
         if (this.currentPage === i) {
           pages[i] = {
@@ -140,6 +163,7 @@ export class PaginationComponent implements OnInit {
         this.currentPage = +event.target.closest('li').dataset.index;
       }
     }
+    this.page.setCurrentPage(this.currentPage);
     this.pages = this.getPages();
   }
 

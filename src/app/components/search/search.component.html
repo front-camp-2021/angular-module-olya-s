@@ -1,7 +1,7 @@
 <form class="search" submit={onSubmit}>
   <div class="search__results">
-    <p>7,618 results found</p>
-    <button class="search__button-like" click="goToWishlist()">
+    <p>{{results}} results found</p>
+    <button class="search__button-like" (click)="goToWishlist()">
       <img [src]="true?'../assets/images/like.svg':'../assets/images/like_2.svg'" alt="see wishlist" />
     </button>
   </div>

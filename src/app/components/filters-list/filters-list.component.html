@@ -1,22 +1,22 @@
 <div class="filter-form">
   <h3 class="filter-form__title">Filters
-    <button class="filter-form__submit-button" type="text">&lt;&lt;</button>
+    <button class="filter-form__button" type="text">&lt;&lt;</button>
   </h3>
   <div class="filter-form__list-wrapper">
-    <div *ngIf="!!filters" class="filters">
-      <div *ngIf="filters.price">
-        <app-double-slider [price]="filters.price"></app-double-slider>
+    <div class="filters">
+      <div *ngIf="price">
+        <app-double-slider [price]="price" title="Price" #slider></app-double-slider>
       </div>
       <hr>
-      <div *ngIf="filters.categories">
-        <app-filter [filters]="filters.categories"></app-filter>
+      <div *ngIf="categories">
+        <app-filter [filters]="categories" title="Category" #sections></app-filter>
       </div>
       <hr>
-      <div *ngIf="filters.brands">
-        <app-filter [filters]="filters.brands"></app-filter>
+      <div *ngIf="brands">
+        <app-filter [filters]="brands" title="Brand" #sections></app-filter>
       </div>
     </div>
-    <div *ngIf="!filters">No Filters to show</div>
+    <div *ngIf="!(price||categories||brands)">No Filters to show</div>
   </div>
   <button class="filter-form__clear-button" (click)="clearAllFilters()">
     Clear all filters

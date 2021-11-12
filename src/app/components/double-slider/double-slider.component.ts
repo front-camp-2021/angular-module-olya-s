@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
   selector: 'app-double-slider',
@@ -8,20 +9,18 @@ import { Options } from '@angular-slider/ngx-slider';
 })
 export class DoubleSliderComponent implements OnInit {
   range: number = 0;
-  title: string = '';
   value: number = 0;
   highValue: number = 0;
   options: Options = {
-    floor: 0,
-    ceil: 0
+    floor: <number>0,
+    ceil: <number>0
   };
 
   @Input() price: any = {};
-
-  constructor() { }
+  @Input() title: string = '';
+  constructor(private filtering: FilterService) { }
 
   ngOnInit(): void {
-    this.title = this.price.title;
     this.value = this.price.selected.from;
     this.highValue = this.price.selected.to;
     this.options = {
@@ -31,7 +30,13 @@ export class DoubleSliderComponent implements OnInit {
   }
 
   modelChange(): void {
-    // console.log(this.range)
+    this.filtering.setFilter(this.title, this.range);
+  }
+
+  reset(): void {
+    this.range = this.price.min;
+    this.value = this.price.min;
+    this.highValue = this.price.max;
   }
 
 }

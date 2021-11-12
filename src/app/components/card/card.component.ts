@@ -45,6 +45,10 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.product = {
+      ...this.product,
+      quantity: 0
+    };
   }
 
   goToProductPage(): void {
@@ -53,12 +57,10 @@ export class CardComponent implements OnInit {
 
   addToWishlist(): void {
     this.product.inWishlist = !this.product.inWishlist;
-    console.log("add to wishlist");
   }
 
   addToCart(): void {
     this.product.quantity++;
-    console.log("add to cart")
   }
 
 }

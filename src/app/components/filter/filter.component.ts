@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { FilterItemComponent } from '../filter-item/filter-item.component';
 
 @Component({
   selector: 'app-filter',
@@ -6,16 +7,17 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  title: string = '';
 
-  @Input() filters: any[];
-  constructor() {
-    this.filters = [];
+  @Input() filters: any = [];
+  @Input() title: string = '';
+
+  @ViewChildren(FilterItemComponent)
+  checkboxes!: QueryList<FilterItemComponent>;
+  constructor() { }
+
+  ngOnInit(): void { }
+
+  reset() {
+    this.checkboxes.forEach(checkbox => checkbox.reset())
   }
-
-  ngOnInit(): void {
-    this.title = this.filters[0].value.split('=')[0][0]
-      .toUpperCase() + this.filters[0].value.split('=')[0].slice(1);
-  }
-
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
   selector: 'app-filter-item',
@@ -6,15 +7,23 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./filter-item.component.scss']
 })
 export class FilterItemComponent implements OnInit {
+  checked: boolean;
 
   @Input() filter: any = {};
-  constructor() { }
+  @Input() title: string = '';
+  constructor(private filtering: FilterService) {
+    this.checked = false;
+  }
 
   ngOnInit(): void {
   }
 
   modelChange(): void {
-    console.log(this.filter);
+    this.filtering.setFilter(this.title, this.filter);
+  }
+
+  reset(): void {
+    this.checked = false;
   }
 
 }
