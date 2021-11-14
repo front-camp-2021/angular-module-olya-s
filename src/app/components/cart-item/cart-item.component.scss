@@ -1,0 +1,48 @@
+@use '../../../assets/styles/vars' as *;
+
+.purchase {
+  padding: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 150px 1fr 135px;
+  font-weight: 400;
+  background: #FFFFFF;
+  box-shadow: $box-shadow;
+  border-radius: 8px;
+
+  &__image {
+    padding: 10px;
+  
+    img {  
+     height: 100px;
+   }   
+  }
+
+  &__body {
+    padding: 10px;
+  }
+
+  &__amount {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  &__count button {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 3px;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  
+    &[disabled] {
+      border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+    
+    &:not([disabled]):hover {
+      cursor: pointer;
+      box-shadow: $box-shadow-hover;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FilterService } from 'src/app/services/filter.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 const debounce = (callback: any) => {
   let timeout: any;
@@ -19,10 +20,12 @@ const debounce = (callback: any) => {
 export class SearchComponent implements OnInit, OnDestroy {
   value: string = '';
   results: number = 0;
+  wishfulProducts: any = [];
   private destroy = new Subject<void>();
 
   constructor(
-    private filtering: FilterService
+    private filtering: FilterService,
+    private storage: StorageService
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +36,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.filtering.getSearch()
       .pipe(takeUntil(this.destroy))
       .subscribe(data => this.value = data);
+
+
+    this.storage.getProducts()
+      .pipe(takeUntil(this.destroy))
+      .subscribe(data => {
+        this.wishfulProducts = data.filter((p: any) => p.inWishlist);
+      });
   }
 
   ngOnDestroy(): void {
@@ -46,10 +56,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   setSearch = debounce((): void => {
     this.filtering.setFilter('Search', this.value);
-  })
-
-  goToWishlist(): void {
-    console.log("Go To Wishlist");
-  }
+  });
 
 }

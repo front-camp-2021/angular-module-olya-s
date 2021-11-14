@@ -9,7 +9,7 @@ export class FilterService {
   price = new BehaviorSubject<Array<number>>([]);
   categories = new BehaviorSubject<Array<string>>([]);
   brands = new BehaviorSubject<Array<string>>([]);
-  count = new BehaviorSubject<number>(0);
+  countProducts = new BehaviorSubject<number>(0);
 
   filterSearch: string = '';
   filteredPrice: number[] = [];
@@ -20,7 +20,6 @@ export class FilterService {
 
   setFilter(title: string, value: any) {
     if (title === 'Search') {
-      console.log("SEARCH", value);
       this.search.next(value);
     }
     if (title === 'Price') {
@@ -42,7 +41,7 @@ export class FilterService {
   }
 
   setProductsCount(count: number): void {
-    this.count.next(count);
+    this.countProducts.next(count);
   }
 
   getSearch(): BehaviorSubject<string> {
@@ -62,7 +61,7 @@ export class FilterService {
   }
 
   getCount(): BehaviorSubject<number> {
-    return this.count;
+    return this.countProducts;
   }
 
   resetFilters(): void {

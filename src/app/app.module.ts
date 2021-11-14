@@ -16,6 +16,13 @@ import { FilterComponent } from './components/filter/filter.component';
 import { FilterItemComponent } from './components/filter-item/filter-item.component';
 import { DoubleSliderComponent } from './components/double-slider/double-slider.component';
 import { HttpClientModule } from '@angular/common/http';
+import { WishlistPageComponent } from './components/wishlist-page/wishlist-page.component';
+import { CartPageComponent } from './components/cart-page/cart-page.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
+import { ClearButtonComponent } from './components/clear-button/clear-button.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +36,14 @@ import { HttpClientModule } from '@angular/common/http';
     BreadcrumbsComponent,
     FilterComponent,
     FilterItemComponent,
-    DoubleSliderComponent
+    DoubleSliderComponent,
+    WishlistPageComponent,
+    CartPageComponent,
+    NotFoundComponent,
+    MainPageComponent,
+    ProductPageComponent,
+    ClearButtonComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,20 @@
+<div class="card-in-cart">
+  <div class="purchase">
+    <div class="purchase__image">
+      <img [src]="product.images[0]" alt="product" />
+    </div>
+    <div class="purchase__body">
+      <h4 class="purchase__title">{{product.title}}</h4>
+      <p class="purchase__text">{{product.text}}</p>
+    </div>
+    <div class="purchase__amount">
+      <span class="purchase__price">Price: {{product.price}}</span>
+      <div class="purchase__count">
+        <button (click)="minusOne()" [disabled]="!quantity">-</button>
+        <button disabled>{{quantity}}</button>
+        <button (click)="plusOne()">+</button>
+      </div>
+      <span class="purchase__total">Total: {{quantity * product.price}}</span>
+    </div>
+  </div>
+</div>

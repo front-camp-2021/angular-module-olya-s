@@ -1,28 +1,75 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
+  price = new BehaviorSubject<Array<any>>([]);
+  categories = new BehaviorSubject<Array<string>>([]);
+  brands = new BehaviorSubject<Array<string>>([]);
+  products = new BehaviorSubject<Array<any>>([]);
+  purchaseCount = new BehaviorSubject<number>(0);
 
-  constructor(private HttpClient: HttpClient) { }
+  productsList: any = [{}];
 
-  getProducts(): Observable<any> {
-    return this.HttpClient.get(`http://localhost:3001/products`);
+  constructor() { }
+
+  setFilter(title: string, value: any): void {
+    if (title === 'Price') {
+      this.price.next(value);
+    }
+    if (title === 'Categories') {
+      this.categories.next(value);
+    }
+    if (title === 'Brands') {
+      this.brands.next(value);
+    }
   }
 
-  getPrice(): Observable<any> {
-    return this.HttpClient.get(`http://localhost:3001/price`);
+  setProducts(products: any): void {
+    this.productsList = products.slice();
+    this.products.next(this.productsList);
   }
 
-  getCategories(): Observable<any> {
-    return this.HttpClient.get(`http://localhost:3001/categories`);
+  setWishlist(product: any): void {
+    this.productsList = this.productsList.map((p: any) =>
+      p.id === product.id
+        ? { ...p, inWishlist: !p.inWishlist }
+        : p
+    );
+    this.products.next(this.productsList);
   }
 
-  getBrands(): Observable<any> {
-    return this.HttpClient.get(`http://localhost:3001/brands`);
+  setCartlist(product: any, quantity: number): void {
+    this.productsList = this.productsList.map((p: any) =>
+      p.id === product.id
+        ? { ...p, quantity: p.quantity + quantity }
+        : p
+    );
+    this.products.next(this.productsList);
+    this.purchaseCount.next(this.productsList.
+      reduce((sum: number, product: any) => (sum + product.quantity), 0));
+  }
+
+  getProducts(): BehaviorSubject<Array<any>> {
+    return this.products;
+  }
+
+  clearWishlist(): void {
+    this.productsList = this.productsList.map((p: any) => ({ ...p, inWishlist: false }));
+    this.products.next(this.productsList);
+  }
+
+  clearCartlist(): void {
+    this.productsList = this.productsList.map((p: any) => ({ ...p, quantity: 0 }));
+    this.products.next(this.productsList);
+    this.purchaseCount.next(this.productsList.
+      reduce((sum: number, product: any) => (sum + product.quantity), 0));
+  }
+
+  getPurchaseCount(): BehaviorSubject<number> {
+    return this.purchaseCount;
   }
 
 }

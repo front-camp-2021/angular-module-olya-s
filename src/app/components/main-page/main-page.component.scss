@@ -1,0 +1,18 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @media screen and (min-width: 320px) {
+    grid-gap: 15px;
+  }
+  
+  @media screen and (min-width: 720px) {
+    grid-gap: 20px;
+    grid-template-columns: 1fr 2fr;
+  }
+  
+  @media screen and (min-width: 1200px) {
+    grid-gap: 28px;
+    grid-template-columns: 1fr 3fr;
+  }
+}

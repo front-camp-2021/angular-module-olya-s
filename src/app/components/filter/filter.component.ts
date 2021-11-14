@@ -15,7 +15,8 @@ export class FilterComponent implements OnInit {
   checkboxes!: QueryList<FilterItemComponent>;
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   reset() {
     this.checkboxes.forEach(checkbox => checkbox.reset())

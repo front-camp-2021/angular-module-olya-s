@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FilterService } from 'src/app/services/filter.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { DataService } from 'src/app/services/data.service';
 import { DoubleSliderComponent } from '../double-slider/double-slider.component';
 import { FilterComponent } from '../filter/filter.component';
 
@@ -86,20 +86,20 @@ export class FiltersListComponent implements OnInit, OnDestroy {
   @ViewChild(DoubleSliderComponent) private slider!: DoubleSliderComponent;
   @ViewChildren(FilterComponent) private filters!: QueryList<FilterComponent>;
   constructor(
-    private storage: StorageService,
+    private data: DataService,
     private filtering: FilterService
   ) { }
 
   ngOnInit(): void {
-    this.storage.getPrice()
+    this.data.getPrice()
       .pipe(takeUntil(this.destroy))
       .subscribe(data => this.price = data);
 
-    this.storage.getCategories()
+    this.data.getCategories()
       .pipe(takeUntil(this.destroy))
       .subscribe(data => this.categories = data);
 
-    this.storage.getBrands()
+    this.data.getBrands()
       .pipe(takeUntil(this.destroy))
       .subscribe(data => this.brands = data);
   }
@@ -109,7 +109,7 @@ export class FiltersListComponent implements OnInit, OnDestroy {
     this.destroy.complete();
   }
 
-  clearAllFilters(): void {
+  clearAllFilters = (): void => {
     this.filtering.resetFilters();
     this.slider.reset();
     this.filters.forEach(filter => filter.reset());

@@ -1,0 +1,11 @@
+<div *ngIf="cartlist.length">
+  <div class="button-wrapper">
+    <app-clear-button [onClick]="clearCart">Clear Cart</app-clear-button>
+  </div>
+  <div class="cart">
+    <app-cart-item *ngFor="let product of cartlist" [product]="product" [countTotalPrice]="countTotalPrice">
+    </app-cart-item>
+  </div>
+  <div>Total: {{totalAmount}}</div>
+</div>
+<h2 *ngIf="!cartlist.length">No products in cart</h2>

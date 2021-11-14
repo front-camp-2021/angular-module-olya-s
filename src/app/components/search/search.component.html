@@ -1,9 +1,12 @@
 <form class="search" submit={onSubmit}>
   <div class="search__results">
     <p>{{results}} results found</p>
-    <button class="search__button-like" (click)="goToWishlist()">
-      <img [src]="true?'../assets/images/like.svg':'../assets/images/like_2.svg'" alt="see wishlist" />
-    </button>
+    <a routerLink="/wishlist">
+      <button class="search__button-like">
+        <img [src]="!wishfulProducts.length?'../assets/images/like.svg':'../assets/images/like_2.svg'"
+          alt="see wishlist" />
+      </button>
+    </a>
   </div>
   <label htmlFor="search-input" hidden>Search</label>
   <input input="props.debouncedOnInput()" name="search" class="search__input" id="search-input" type="text"

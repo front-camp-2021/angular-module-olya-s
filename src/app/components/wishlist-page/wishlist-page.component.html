@@ -1,0 +1,9 @@
+<div *ngIf="wishfulProducts.length">
+  <div class="button-wrapper">
+    <app-clear-button [onClick]="clearWishlist">Clear wishlist</app-clear-button>
+  </div>
+  <div class="catalog">
+    <app-card *ngFor="let product of wishfulProducts" [product]="product"></app-card>
+  </div>
+</div>
+<h2 *ngIf="!wishfulProducts.length">No Wishful Products</h2>

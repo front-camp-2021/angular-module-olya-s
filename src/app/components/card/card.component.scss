@@ -12,6 +12,10 @@
   box-shadow: $box-shadow;
   border-radius: $border-radius;
 
+  a {
+    color: inherit;
+  }
+
   &:hover {
     cursor: pointer;
   }

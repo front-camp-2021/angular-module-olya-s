@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
 
 // const product = {
 //   "id": "76w0hz7015kkr9kjkav",
@@ -21,6 +22,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
+  id: string = '';
 
   @Input() product: {
     id: string,
@@ -32,7 +34,7 @@ export class CardComponent implements OnInit {
     quantity: number
   }
 
-  constructor() {
+  constructor(private storage: StorageService) {
     this.product = {
       id: '',
       images: [],
@@ -45,22 +47,18 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.product = {
-      ...this.product,
-      quantity: 0
-    };
-  }
-
-  goToProductPage(): void {
-    console.log("click");
+    this.product = this.product;
+    this.id = this.product.id;
   }
 
   addToWishlist(): void {
-    this.product.inWishlist = !this.product.inWishlist;
+    // this.product.inWishlist = !this.product.inWishlist;
+    this.storage.setWishlist(this.product);
   }
 
   addToCart(): void {
-    this.product.quantity++;
+    // this.product.quantity++;
+    this.storage.setCartlist(this.product, 1);
   }
 
 }

@@ -5,20 +5,18 @@
   <div class="filter-form__list-wrapper">
     <div class="filters">
       <div *ngIf="price">
-        <app-double-slider [price]="price" title="Price" #slider></app-double-slider>
+        <app-double-slider [price]="price" title="Price"></app-double-slider>
       </div>
       <hr>
       <div *ngIf="categories">
-        <app-filter [filters]="categories" title="Category" #sections></app-filter>
+        <app-filter [filters]="categories" title="Category"></app-filter>
       </div>
       <hr>
       <div *ngIf="brands">
-        <app-filter [filters]="brands" title="Brand" #sections></app-filter>
+        <app-filter [filters]="brands" title="Brand"></app-filter>
       </div>
     </div>
     <div *ngIf="!(price||categories||brands)">No Filters to show</div>
   </div>
-  <button class="filter-form__clear-button" (click)="clearAllFilters()">
-    Clear all filters
-  </button>
+  <app-clear-button [onClick]="clearAllFilters">Clear all filters</app-clear-button>
 </div>
