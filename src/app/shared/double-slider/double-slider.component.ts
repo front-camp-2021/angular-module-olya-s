@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
-import { FilterService } from 'src/app/services/filter.service';
+import { FilterService } from 'src/app/core/services/filter/filter.service';
 
 @Component({
   selector: 'app-double-slider',

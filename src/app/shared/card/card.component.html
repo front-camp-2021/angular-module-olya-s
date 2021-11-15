@@ -1,19 +1,19 @@
-<div class="card">
-  <a routerLink="/product/{{id}}">
-    <div class="card__image">
-      <img [src]="product.images[0]" alt="product" />
+<div class="card" (click)="goTo()">
+  <!-- <a routerLink="/product/{{id}}"> -->
+  <div class="card__image">
+    <img [src]="product.images[0]" alt="product" />
+  </div>
+  <div class="card__body">
+    <div>
+      <span [class]="product.rating?'card__rating':'visually-hidden'">
+        {{product.rating}}
+        <img src="../assets/images/star.svg" alt="star icon" />
+      </span>
+      <span class="card__price">{{product.price | currency:'UAH':'code':'0.0'}}</span>
     </div>
-    <div class="card__body">
-      <div>
-        <span [class]="product.rating?'card__rating':'visually-hidden'">
-          {{product.rating}}
-          <img src="../assets/images/star.svg" alt="star icon" />
-        </span>
-        <span class="card__price">{{product.price | currency:'UAH':'code':'0.0'}}</span>
-      </div>
-      <h4 class="card__title">{{product.title}}</h4>
-    </div>
-  </a>
+    <h4 class="card__title">{{product.title}}</h4>
+  </div>
+  <!-- </a> -->
   <div class="card__footer">
     <button class="card__button card__button_wishlist" (click)="addToWishlist()">
       <img [src]="!product.inWishlist

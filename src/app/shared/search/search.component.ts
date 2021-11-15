@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { FilterService } from 'src/app/services/filter.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { FilterService } from 'src/app/core/services/filter/filter.service';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 
 const debounce = (callback: any) => {
   let timeout: any;

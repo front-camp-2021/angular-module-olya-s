@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/core/services/data/data.service';
 
 @Component({
   selector: 'app-product-page',

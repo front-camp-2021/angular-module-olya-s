@@ -1,20 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { StorageService } from 'src/app/services/storage.service';
-
-// const product = {
-//   "id": "76w0hz7015kkr9kjkav",
-//   "images": [
-//     "https://content2.rozetka.com.ua/goods/images/big_tile/163399632.jpg",
-//     "https://content.rozetka.com.ua/goods/images/big_tile/163399633.jpg"
-//   ],
-//   "title": "Ноутбук Acer Aspire 3 A315-57G-336G (NX.HZREU.01S) Charcoal Black",
-//   "rating": 2.89,
-//   "price": 15999,
-//   "category": "laptops",
-//   "brand": "acer",
-//   "inWishlist": false,
-//   "quantity": 0
-// }
+import { Router } from '@angular/router';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 
 @Component({
   selector: 'app-card',
@@ -34,7 +20,10 @@ export class CardComponent implements OnInit {
     quantity: number
   }
 
-  constructor(private storage: StorageService) {
+  constructor(
+    private storage: StorageService,
+    private router: Router
+  ) {
     this.product = {
       id: '',
       images: [],
@@ -59,6 +48,10 @@ export class CardComponent implements OnInit {
   addToCart(): void {
     // this.product.quantity++;
     this.storage.setCartlist(this.product, 1);
+  }
+
+  goTo(): void {
+    this.router.navigate(['/product', this.id]);
   }
 
 }

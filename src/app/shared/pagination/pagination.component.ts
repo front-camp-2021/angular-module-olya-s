@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { PageService } from 'src/app/services/page.service';
+import { PageService } from 'src/app/core/services/page/page.service';
 
 @Component({
   selector: 'app-pagination',

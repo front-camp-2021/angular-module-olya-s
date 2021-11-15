@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { DataService } from 'src/app/services/data.service';
-import { FilterService } from 'src/app/services/filter.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { DataService } from 'src/app/core/services/data/data.service';
+import { FilterService } from 'src/app/core/services/filter/filter.service';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 
 @Component({
   selector: 'app-header',
@@ -32,17 +32,17 @@ export class HeaderComponent implements OnInit {
         })))
       );
 
-    this.data.getPrice()
-      .pipe(takeUntil(this.destroy))
-      .subscribe(data => this.storage.setFilter('Price', data));
+    // this.data.getPrice()
+    //   .pipe(takeUntil(this.destroy))
+    //   .subscribe(data => this.storage.setFilter('Price', data));
 
-    this.data.getCategories()
-      .pipe(takeUntil(this.destroy))
-      .subscribe(data => this.storage.setFilter('Categories', data));
+    // this.data.getCategories()
+    //   .pipe(takeUntil(this.destroy))
+    //   .subscribe(data => this.storage.setFilter('Categories', data));
 
-    this.data.getBrands()
-      .pipe(takeUntil(this.destroy))
-      .subscribe(data => this.storage.setFilter('Brands', data));
+    // this.data.getBrands()
+    //   .pipe(takeUntil(this.destroy))
+    //   .subscribe(data => this.storage.setFilter('Brands', data));
 
     this.storage.getPurchaseCount()
       .pipe(takeUntil(this.destroy))

@@ -1,10 +1,10 @@
 import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
-// import { DataService } from 'src/app/services/data.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { FilterService } from 'src/app/services/filter.service';
-import { PageService } from 'src/app/services/page.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { FilterService } from 'src/app/core/services/filter/filter.service';
+import { PageService } from 'src/app/core/services/page/page.service';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-cards-list',
@@ -99,8 +99,10 @@ export class CardsListComponent implements OnInit, OnDestroy, DoCheck {
       filteredProducts = filteredProducts.filter((prod: any) =>
         prod.title.toLowerCase().includes(this.search));
     }
-    filteredProducts = filteredProducts.filter((prod: any) =>
-      (prod.price >= this.price[0]) && (prod.price <= this.price[1]));
+    if (this.price.length) {
+      filteredProducts = filteredProducts.filter((prod: any) =>
+        (prod.price >= this.price[0]) && (prod.price <= this.price[1]));
+    }
     let productsToView = filteredProducts.slice();
     result = productsToView.splice(this.currentPage * this.pageSize - this.pageSize, this.pageSize);
     this.filtering.setProductsCount(filteredProducts.length);
