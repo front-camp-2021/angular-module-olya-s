@@ -12,8 +12,8 @@ import { DataService } from 'src/app/core/services/data/data.service';
 export class ProductPageComponent implements OnInit {
   id: string = '';
   product: any;
+  private destroy$ = new Subject<void>();
 
-  private destroy = new Subject<void>();
   constructor(
     private activatedRoute: ActivatedRoute,
     private data: DataService
@@ -21,22 +21,27 @@ export class ProductPageComponent implements OnInit {
 
   ngOnInit(): void {
     // this.id = this.activatedRoute.snapshot.params.id;
-    this.activatedRoute.params
-      .pipe(takeUntil(this.destroy))
-      .subscribe(params => {
-        this.id = params.id;
-        this.getProduct();
+    // this.activatedRoute.params
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe(params => {
+    //     this.id = params.id;
+    //     this.getProduct();
+    //   });
+    this.activatedRoute.data
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.product = data.product;
       });
   }
 
   ngOnDestroy(): void {
-    this.destroy.next();
-    this.destroy.complete();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   getProduct(): void {
     this.data.getProduct(this.id)
-      .pipe(takeUntil(this.destroy))
+      .pipe(takeUntil(this.destroy$))
       .subscribe(data => this.product = data);
   }
 

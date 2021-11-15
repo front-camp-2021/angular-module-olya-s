@@ -5,11 +5,16 @@ import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ProductPageComponent } from './components/product-page/product-page.component';
+import { NightGuard } from './core/guards/night-guard.service';
+import { ProductResolver } from './core/resolvers/product.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: MainPageComponent
+  },
+  {
+    redirectTo: ''
   },
   {
     path: 'products',
@@ -25,7 +30,11 @@ const routes: Routes = [
   },
   {
     path: 'product/:id',
-    component: ProductPageComponent
+    component: ProductPageComponent,
+    canActivate: [NightGuard],
+    resolve: {
+      product: ProductResolver
+    }
   },
   {
     path: '**',
