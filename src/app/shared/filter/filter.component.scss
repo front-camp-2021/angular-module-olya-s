@@ -1,0 +1,10 @@
+@use '../../../assets/styles/mixins' as *;
+
+.filters__group {
+  padding-bottom: 28px;
+
+  legend {
+    @include text-format(600);
+    margin-bottom: 28px;    
+  }
+}

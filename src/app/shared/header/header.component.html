@@ -1,0 +1,10 @@
+<header class="header">
+  <a routerLink="" class="header__logo-link" (click)="onClick()">
+    <img class="header__image" src="../assets/images/logo.svg" alt="shop logo" />
+    <h1 class="header__title">Online Store</h1>
+  </a>
+  <a routerLink="/cart" class="header__cart-image">
+    <div *ngIf="purchaseCount" class="header__purchase-count">{{purchaseCount}}</div>
+    <img src="../assets/images/shopping-cart.svg" alt="add to cart" />
+  </a>
+</header>

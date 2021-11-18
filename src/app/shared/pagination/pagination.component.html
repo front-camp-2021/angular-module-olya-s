@@ -1,0 +1,22 @@
+<div *ngIf="pages.length" class="pagination" (pointerdown)="handlePointerDown($event)">
+  <span class="pagination__item" data-element="prevPage">
+    {{this.currentPage === 1 ? '<' : '' }} <button *ngIf="this.currentPage !== 1"
+      class="pagination__link pagination__link_arrow">
+      &lt;
+      </button>
+  </span>
+  <ul class="pagination__list">
+    <li *ngFor="let page of this.pages" [class]="page.class" [attr.data-index]="page.dataIndex">
+      <button *ngIf="page&&page.ngContent" class="pagination__link">
+        {{page.ngContent === '...' ? page.ngContent : page.dataIndex}}
+      </button>
+      {{page.ngContent ? '' : page.dataIndex}}
+    </li>
+  </ul>
+  <span class="pagination__item" data-element="nextPage">
+    {{this.currentPage === this.totalPages ? '>' : ''}}
+    <button *ngIf="this.currentPage !== this.totalPages" class="pagination__link pagination__link_arrow">
+      &gt;
+    </button>
+  </span>
+</div>

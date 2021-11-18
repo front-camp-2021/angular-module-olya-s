@@ -1,0 +1,66 @@
+@use '../../../assets/styles/vars' as *;
+@use '../../../assets/styles/mixins' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 20px;
+  }
+
+  &__logo-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__image {
+    width: 65px;
+
+    &:hover {
+      cursor: pointer;
+    }    
+  }
+
+  &__title {
+    @include text-format(600, 2rem);
+    color: $primary-color;
+    
+    @media screen and (min-width: 720px) {
+      @include text-format(600, 3rem);
+    }
+  }
+
+  &__cart-image{
+    position: relative;
+    
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__purchase-count {
+    position: absolute;
+    top: 3px;
+    right: 15px;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $primary-color;
+    font-size: 0.6rem;
+    font-weight: bold;
+    border: 1px solid $primary-color;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 1000;
+  }
+}

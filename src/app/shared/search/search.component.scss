@@ -1,0 +1,58 @@
+@use '../../../assets/styles/vars' as *;
+
+.search {
+  position: relative;
+  margin-bottom: 20px;
+
+  @media  screen and (min-width: 720px) {
+    margin-bottom: 20px;    
+  }
+  
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 28px;
+  }
+
+  &__results {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__button-like {
+    width: 45px;
+    height: 40px;
+    border: none;
+    align-self: baseline;
+    border-radius: $border-radius;
+    background: $bg-primary;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: $box-shadow-hover;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    border: none;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+
+    &:hover {
+      box-shadow: $box-shadow-hover;       
+    }
+
+    @media  screen and (min-width: 1200px) {
+      margin-top: 20px;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    right: 15px;
+    bottom: 17px;
+  }
+}

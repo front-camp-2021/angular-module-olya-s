@@ -1,0 +1,22 @@
+<div class="filter-form">
+  <h3 class="filter-form__title">Filters
+    <button class="filter-form__button" type="text">&lt;&lt;</button>
+  </h3>
+  <div class="filter-form__list-wrapper">
+    <div class="filters">
+      <div *ngIf="isPrice">
+        <app-double-slider [price]="price" title="Price"></app-double-slider>
+      </div>
+      <hr>
+      <div *ngIf="categories.length">
+        <app-filter [filters]="categories" title="Category"></app-filter>
+      </div>
+      <hr>
+      <div *ngIf="brands.length">
+        <app-filter [filters]="brands" title="Brand"></app-filter>
+      </div>
+    </div>
+    <div *ngIf="!(price||categories||brands)">No Filters to show</div>
+  </div>
+  <app-clear-button [onClick]="clearAllFilters">Clear all filters</app-clear-button>
+</div>

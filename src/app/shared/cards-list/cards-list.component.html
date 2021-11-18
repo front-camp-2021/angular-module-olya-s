@@ -1,0 +1,12 @@
+<div>
+  <app-search></app-search>
+  <section>
+    <h2 class="visually-hidden">Products catalog</h2>
+    <div *ngIf="products&&products.length">
+      <div class="catalog">
+        <app-card *ngFor="let product of products" [product]="product"></app-card>
+      </div>
+    </div>
+    <div *ngIf="!(products&&products.length)">No products found</div>
+  </section>
+</div>
