@@ -9,9 +9,11 @@ import { FilterService } from 'src/app/core/services/filter/filter.service';
 export class FilterItemComponent implements OnInit {
   checked: boolean;
 
-  @Input() filter: any = {};
-  @Input() title: string = '';
+  @Input() filter: {};
+  @Input() title: string;
   constructor(private filtering: FilterService) {
+    this.filter = {};
+    this.title = '';
     this.checked = false;
   }
 

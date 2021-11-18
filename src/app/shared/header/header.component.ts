@@ -32,18 +32,6 @@ export class HeaderComponent implements OnInit {
         })))
       );
 
-    // this.data.getPrice()
-    //   .pipe(takeUntil(this.destroy))
-    //   .subscribe(data => this.storage.setFilter('Price', data));
-
-    // this.data.getCategories()
-    //   .pipe(takeUntil(this.destroy))
-    //   .subscribe(data => this.storage.setFilter('Categories', data));
-
-    // this.data.getBrands()
-    //   .pipe(takeUntil(this.destroy))
-    //   .subscribe(data => this.storage.setFilter('Brands', data));
-
     this.storage.getPurchaseCount()
       .pipe(takeUntil(this.destroy))
       .subscribe(data => this.purchaseCount = data);

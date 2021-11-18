@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
+import { Card } from 'src/app/core/interfaces/card';
 
 @Component({
   selector: 'app-cart-item',

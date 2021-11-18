@@ -1,4 +1,4 @@
-<fieldset class="filters__group">
+<fieldset *ngIf="price.selected" class="filters__group">
   <legend>{{title}}</legend>
   <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options" name="range" [(ngModel)]="range"
     (ngModelChange)="modelChange()">

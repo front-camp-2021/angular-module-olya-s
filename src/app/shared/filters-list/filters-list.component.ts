@@ -13,8 +13,9 @@ import { FilterComponent } from '../filter/filter.component';
 })
 export class FiltersListComponent implements OnInit, OnDestroy {
   price: any;
-  categories: any;
-  brands: any;
+  categories: string[];
+  brands: string[];
+  isPrice: boolean;
   private destroy = new Subject<void>();
 
   @ViewChild(DoubleSliderComponent) private slider!: DoubleSliderComponent;
@@ -22,12 +23,20 @@ export class FiltersListComponent implements OnInit, OnDestroy {
   constructor(
     private data: DataService,
     private filtering: FilterService
-  ) { }
+  ) {
+    this.price = {};
+    this.categories = [];
+    this.brands = [];
+    this.isPrice = false;
+  }
 
   ngOnInit(): void {
     this.data.getPrice()
       .pipe(takeUntil(this.destroy))
-      .subscribe(data => this.price = data);
+      .subscribe(data => {
+        this.price = data;
+        this.isPrice = true;
+      });
 
     this.data.getCategories()
       .pipe(takeUntil(this.destroy))

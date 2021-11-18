@@ -11,10 +11,8 @@ import { ProductResolver } from './core/resolvers/product.resolver';
 const routes: Routes = [
   {
     path: '',
-    component: MainPageComponent
-  },
-  {
-    redirectTo: ''
+    redirectTo: 'products',
+    pathMatch: 'full'
   },
   {
     path: 'products',

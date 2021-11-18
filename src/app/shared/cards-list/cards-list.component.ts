@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { FilterService } from 'src/app/core/services/filter/filter.service';
 import { PageService } from 'src/app/core/services/page/page.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
-import { ThisReceiver } from '@angular/compiler';
+import { Card } from 'src/app/core/interfaces/card';
 
 @Component({
   selector: 'app-cards-list',
@@ -23,7 +23,6 @@ export class CardsListComponent implements OnInit, OnDestroy, DoCheck {
   private destroy = new Subject<void>();
 
   constructor(
-    // private data: DataService,
     private storage: StorageService,
     private filtering: FilterService,
     private page: PageService
@@ -64,11 +63,11 @@ export class CardsListComponent implements OnInit, OnDestroy, DoCheck {
     this.destroy.complete();
   }
 
-  getProducts(products: any[]): any {
+  getProducts(products: Card[]): any {
     let result = [];
-    let categoryProducts: any = [];
-    let brandProducts: any = [];
-    let filteredProducts = [];
+    let categoryProducts: Card[] = [];
+    let brandProducts: Card[] = [];
+    let filteredProducts: Card[] = [];
     if (!this.categories.length && !this.brands.length) {
       filteredProducts = products.slice();
     } else {
@@ -83,8 +82,8 @@ export class CardsListComponent implements OnInit, OnDestroy, DoCheck {
         ));
       }
       if (categoryProducts.length && brandProducts.length) {
-        filteredProducts = categoryProducts.filter((prodCategory: any) => {
-          const products = brandProducts.filter((prodBrand: any) => {
+        filteredProducts = categoryProducts.filter((prodCategory: Card) => {
+          const products = brandProducts.filter((prodBrand: Card) => {
             return prodCategory.id === prodBrand.id
           })
           return products.length;
@@ -96,11 +95,11 @@ export class CardsListComponent implements OnInit, OnDestroy, DoCheck {
       }
     }
     if (!!this.search) {
-      filteredProducts = filteredProducts.filter((prod: any) =>
+      filteredProducts = filteredProducts.filter((prod: Card) =>
         prod.title.toLowerCase().includes(this.search));
     }
     if (this.price.length) {
-      filteredProducts = filteredProducts.filter((prod: any) =>
+      filteredProducts = filteredProducts.filter((prod: Card) =>
         (prod.price >= this.price[0]) && (prod.price <= this.price[1]));
     }
     let productsToView = filteredProducts.slice();

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
+import { Card } from 'src/app/core/interfaces/card';
 
 @Component({
   selector: 'app-card',
@@ -10,43 +11,32 @@ import { StorageService } from 'src/app/core/services/storage/storage.service';
 export class CardComponent implements OnInit {
   id: string = '';
 
-  @Input() product: {
-    id: string,
-    images: string[],
-    title: string,
-    rating: number,
-    price: number,
-    inWishlist: boolean,
-    quantity: number
+  @Input() product: Card = {
+    id: '',
+    images: [],
+    title: '',
+    rating: 0,
+    price: 0,
+    category: '',
+    brand: '',
+    inWishlist: false,
+    quantity: 0
   }
 
   constructor(
     private storage: StorageService,
     private router: Router
-  ) {
-    this.product = {
-      id: '',
-      images: [],
-      title: '',
-      rating: 0,
-      price: 0,
-      inWishlist: false,
-      quantity: 0
-    };
-  }
+  ) { }
 
   ngOnInit(): void {
-    this.product = this.product;
     this.id = this.product.id;
   }
 
   addToWishlist(): void {
-    // this.product.inWishlist = !this.product.inWishlist;
     this.storage.setWishlist(this.product);
   }
 
   addToCart(): void {
-    // this.product.quantity++;
     this.storage.setCartlist(this.product, 1);
   }
 

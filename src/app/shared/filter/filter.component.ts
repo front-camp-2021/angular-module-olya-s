@@ -8,12 +8,15 @@ import { FilterItemComponent } from '../filter-item/filter-item.component';
 })
 export class FilterComponent implements OnInit {
 
-  @Input() filters: any = [];
-  @Input() title: string = '';
+  @Input() filters: string[];
+  @Input() title: string;
 
   @ViewChildren(FilterItemComponent)
   checkboxes!: QueryList<FilterItemComponent>;
-  constructor() { }
+  constructor() {
+    this.filters = [];
+    this.title = '';
+  }
 
   ngOnInit(): void {
   }

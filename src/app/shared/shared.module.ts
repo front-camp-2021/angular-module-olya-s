@@ -16,7 +16,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 
-const COMPONENTS = [
+const components = [
   BreadcrumbsComponent,
   CardComponent,
   CardsListComponent,
@@ -33,7 +33,7 @@ const COMPONENTS = [
 
 @NgModule({
   declarations: [
-    ...COMPONENTS
+    ...components
   ],
   imports: [
     CommonModule,
@@ -43,7 +43,7 @@ const COMPONENTS = [
     AppRoutingModule
   ],
   exports: [
-    ...COMPONENTS
+    ...components
   ]
 })
 export class SharedModule { }
